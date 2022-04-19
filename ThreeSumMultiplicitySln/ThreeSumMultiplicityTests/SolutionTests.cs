@@ -18,6 +18,6 @@ public class SolutionTests
         var expected = 20;
 
         // Assert
-        Assert.Equal(actual, expected);
+        Assert.Equal(expected, actual);
     }
 }
