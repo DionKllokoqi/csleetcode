@@ -18,8 +18,13 @@ public class Solution
         var s = partial.Sum();
 
         // Current combination reached target
-        if (s.Equals(target))
+        if (s.Equals(target) && partial.Count == 3)
         {
+            System.Console.WriteLine("====================================================\n");
+            System.Console.WriteLine($"Current number of combinations: {combinations}\n");
+            System.Console.WriteLine($"Current array: {string.Join(",", arr)}\n");
+            System.Console.WriteLine($"Current partial: {string.Join(",", partial)}\n");
+
             combinations += 1;
             return;
         }
