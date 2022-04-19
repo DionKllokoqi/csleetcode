@@ -7,8 +7,6 @@ public class SolutionTests
 {
     [Theory]
     [InlineData(new int[]{2, 1, 3}, 6, 1)]
-    [InlineData(new int[] {1, 1, 1, 1, 1, 1}, 2, 15)]
-    [InlineData(new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 2, 45)]
     public void ThreeSumMulti_OnSimpleInput_ReturnsNrOfTuples(int[] arr, int target, int expected)
     {
         // Arrange
