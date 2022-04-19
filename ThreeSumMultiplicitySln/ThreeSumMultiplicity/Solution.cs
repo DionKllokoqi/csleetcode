@@ -31,8 +31,11 @@ public class Solution
         {
             var n = arr[i];
             var remaining = arr[(i + 1)..^0];
-            partial.Add(n);
-            ThreeSumMultiRecursive(remaining, target, partial);
+            List<int> partial_rec = new List<int>(partial); // We need to copy the list, otherwise the
+                                                            // the reference is passed and we add duplicate
+                                                            // elements to the list
+            partial_rec.Add(n);
+            ThreeSumMultiRecursive(remaining, target, partial_rec);
         }
     }
 }
