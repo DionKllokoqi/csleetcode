@@ -5,17 +5,17 @@ namespace ThreeSumMultiplicityTests;
 
 public class SolutionTests
 {
-    [Fact]
-    public void ThreeSumMulti_OnSimpleInput_ReturnsNrOfTuples()
+    [Theory]
+    [InlineData(new int[]{2, 1, 3}, 6, 1)]
+    [InlineData(new int[] {1, 1, 1, 1, 1, 1}, 2, 15)]
+    [InlineData(new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 2, 45)]
+    public void ThreeSumMulti_OnSimpleInput_ReturnsNrOfTuples(int[] arr, int target, int expected)
     {
         // Arrange
         var threeTierMulti = new Solution();
-        int[] arr = new int[] {2, 1, 3};
-        int target = 6;
 
         // Act
         var actual = threeTierMulti.ThreeSumMulti(arr, target);
-        var expected = 1;
 
         // Assert
         Assert.Equal(expected, actual);
