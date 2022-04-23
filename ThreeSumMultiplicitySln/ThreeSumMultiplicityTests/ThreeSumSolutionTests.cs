@@ -3,14 +3,14 @@ using Xunit;
 
 namespace ThreeSumMultiplicityTests;
 
-public class SolutionTests
+public class ThreeSumSolutionTests
 {
     [Theory]
     [InlineData(new int[]{2, 1, 3}, 6, 1)]
     public void ThreeSumMulti_OnSimpleInput_ReturnsNrOfTuples(int[] arr, int target, int expected)
     {
         // Arrange
-        var threeTierMulti = new Solution();
+        var threeTierMulti = new ThreeSumSolution();
 
         // Act
         var actual = threeTierMulti.ThreeSumMulti(arr, target);
@@ -25,7 +25,7 @@ public class SolutionTests
     public void ThreeSumMulti_OnGenericInput_ReturnsNrOfTuples(int[] arr, int target, int expected)
     {
         // Arrange
-        var threeTierMulti = new Solution();
+        var threeTierMulti = new ThreeSumSolution();
 
         // Act
         var actual = threeTierMulti.ThreeSumMulti(arr, target);

@@ -1,6 +1,6 @@
 ﻿namespace ThreeSumMultiplicity;
 
-public class Solution
+public class ThreeSumSolution
 {
     private static int combinations = 0;
 
