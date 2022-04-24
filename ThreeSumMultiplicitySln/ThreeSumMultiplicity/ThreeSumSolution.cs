@@ -6,6 +6,20 @@ public class ThreeSumSolution
 
     public int ThreeSumMulti(int[] arr, int target)
     {
+        int[] Li = GetSetOfPossibleComplements(arr[(1..^0)], target);
+        int[] Lj = GetSetOfPossibleComplements(arr[(2..^0)], target);
+        int[] Lk = GetSetOfPossibleComplements(arr[(3..^0)], target);
+
+        throw new NotImplementedException();
+    }
+
+    private int[] GetSetOfPossibleComplements(int[] arr, int target)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int ThreeSumMultiRec(int[] arr, int target)
+    {
         ThreeSumMultiRecursive(arr, target, new List<int>());
         var result = combinations;
         combinations = 0;           // Reset static value for next method call
@@ -20,11 +34,6 @@ public class ThreeSumSolution
         // Current combination reached target
         if (s.Equals(target) && partial.Count == 3)
         {
-            System.Console.WriteLine("====================================================\n");
-            System.Console.WriteLine($"Current number of combinations: {combinations}\n");
-            System.Console.WriteLine($"Current array: {string.Join(",", arr)}\n");
-            System.Console.WriteLine($"Current partial: {string.Join(",", partial)}\n");
-
             combinations += 1;
             return;
         }
