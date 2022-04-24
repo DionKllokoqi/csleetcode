@@ -4,7 +4,7 @@ public class ThreeSumSolution
 {
     private static int combinations = 0;
 
-    public int ThreeSumMulti(int[] A, int target)
+    public int ThreeSumMultiTwoSum(int[] A, int target)
     {
         int MOD = 1_000_000_007;
         long ans = 0;
