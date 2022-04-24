@@ -6,16 +6,46 @@ public class ThreeSumSolution
 
     public int ThreeSumMulti(int[] arr, int target)
     {
-        int[] Li = GetSetOfPossibleComplements(arr[(1..^0)], target);
-        int[] Lj = GetSetOfPossibleComplements(arr[(2..^0)], target);
-        int[] Lk = GetSetOfPossibleComplements(arr[(3..^0)], target);
+        int[] Li = GetSetOfPossibleComplements(arr[(0..^2)], target);
 
-        throw new NotImplementedException();
+        List<int[]> Si = new List<int[]>();
+        for (int i = 0; i < Li.Length; i++)
+        {
+            var possibleTarget = Li[i];
+            Si.AddRange(GetCombinationsToTarget(arr[(i + 1)..^1], arr[(i + 2)..^0], possibleTarget));
+        }
+
+        return Si.Count;
+    }
+
+    private List<int[]> GetCombinationsToTarget(int[] arr1, int[] arr2, int possibleTarget)
+    {
+        List<int[]> S = new List<int[]>();
+
+        for (int x = 0; x < arr1.Length; x++)
+        {
+            for (int y = x; y < arr2.Length; y++)
+            {
+                if ((arr1[x] + arr2[y]) == possibleTarget)
+                {
+                    S.Add(new int[] {arr1[x], arr2[y]});
+                }
+            }
+        }
+
+        return S;
     }
 
     private int[] GetSetOfPossibleComplements(int[] arr, int target)
     {
-        throw new NotImplementedException();
+        int[] L = new int[arr.Length];
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            L[i] = target - arr[i];
+        }
+
+        return L;
     }
 
     public int ThreeSumMultiRec(int[] arr, int target)
