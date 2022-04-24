@@ -22,13 +22,12 @@ public class ThreeSumSolution
                 int key = arr[i] + arr[j];
 
                 if (m.TryGetValue(key, out count))
-                    count++;
+                    m[key] = ++count;
                 else
                     m.Add(key, 1);
             }
         }
         return ans;
-
     }
 
     public int ThreeSumMultiTwoSum(int[] A, int target)
