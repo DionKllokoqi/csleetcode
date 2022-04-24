@@ -4,6 +4,33 @@ public class ThreeSumSolution
 {
     private static int combinations = 0;
 
+    public int ThreeSumMultiDict(int[] arr, int target)
+    {
+        int n = arr.Length, mod = 1_000_000_007, ans = 0;
+        Dictionary<int, int>? m = new Dictionary<int, int>();
+        
+        for(int i=0; i<n; i++) 
+        {
+            if (m.ContainsKey(target - arr[i]))
+            {
+                ans = (ans + m[target - arr[i]]) % mod;
+            }
+            
+            for(int j=0; j<i; j++) 
+            {
+                int count;
+                int key = arr[i] + arr[j];
+
+                if (m.TryGetValue(key, out count))
+                    count++;
+                else
+                    m.Add(key, 1);
+            }
+        }
+        return ans;
+
+    }
+
     public int ThreeSumMultiTwoSum(int[] A, int target)
     {
         int MOD = 1_000_000_007;
