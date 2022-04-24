@@ -12,13 +12,14 @@ public class ThreeSumSolutionTests
     public void ThreeSumMulti_ReturnsNrOfTuples(int[] arr, int target, int expected)
     {
         // Arrange
+        int MOD = 1_000_000_007;
         var threeTierMulti = new ThreeSumSolution();
 
         // Act
         var actual = threeTierMulti.ThreeSumMulti(arr, target);
 
         // Assert
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected % MOD, actual);
     }
 
     [Theory]

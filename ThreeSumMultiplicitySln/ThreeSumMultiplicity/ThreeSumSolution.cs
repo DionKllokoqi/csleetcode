@@ -4,48 +4,59 @@ public class ThreeSumSolution
 {
     private static int combinations = 0;
 
-    public int ThreeSumMulti(int[] arr, int target)
+    public int ThreeSumMulti(int[] A, int target)
     {
-        int[] Li = GetSetOfPossibleComplements(arr[(0..^2)], target);
+        int MOD = 1_000_000_007;
+        long ans = 0;
+        Array.Sort(A);
 
-        List<int[]> Si = new List<int[]>();
-        for (int i = 0; i < Li.Length; i++)
-        {
-            var possibleTarget = Li[i];
-            Si.AddRange(GetCombinationsToTarget(arr[(i + 1)..^1], arr[(i + 2)..^0], possibleTarget));
-        }
+        for (int i = 0; i < A.Length; ++i) {
+            // We'll try to find the number of i < j < k
+            // with A[j] + A[k] == T, where T = target - A[i].
 
-        return Si.Count;
-    }
+            // The below is a "two sum with multiplicity".
+            int T = target - A[i];
+            int j = i + 1, k = A.Length - 1;
 
-    private List<int[]> GetCombinationsToTarget(int[] arr1, int[] arr2, int possibleTarget)
-    {
-        List<int[]> S = new List<int[]>();
-
-        for (int x = 0; x < arr1.Length; x++)
-        {
-            for (int y = x; y < arr2.Length; y++)
+            while (j < k)
             {
-                if ((arr1[x] + arr2[y]) == possibleTarget)
+                // These steps proceed as in a typical two-sum.
+                if (A[j] + A[k] < T)
+                    j++;
+                else if (A[j] + A[k] > T)
+                    k--;
+                else if (A[j] != A[k])
                 {
-                    S.Add(new int[] {arr1[x], arr2[y]});
+                    // We have A[j] + A[k] == T.
+                    // Let's count "left": the number of A[j] == A[j+1] == A[j+2] == ...
+                    // And similarly for "right".
+                    int left = 1, right = 1;
+                    while (j + 1 < k && A[j] == A[j + 1]) {
+                        left++;
+                        j++;
+                    }
+                    while (k - 1 > j && A[k] == A[k - 1]) {
+                        right++;
+                        k--;
+                    }
+
+                    ans += left * right;
+                    ans %= MOD;
+                    j++;
+                    k--;
+                }
+                else
+                {
+                    // M = k - j + 1
+                    // We contributed M * (M-1) / 2 pairs.
+                    ans += (k - j + 1) * (k - j) / 2;
+                    ans %= MOD;
+                    break;
                 }
             }
         }
 
-        return S;
-    }
-
-    private int[] GetSetOfPossibleComplements(int[] arr, int target)
-    {
-        int[] L = new int[arr.Length];
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            L[i] = target - arr[i];
-        }
-
-        return L;
+        return (int) ans;
     }
 
     public int ThreeSumMultiRec(int[] arr, int target)
